@@ -1,0 +1,666 @@
+@prefix : <http://www.zupfer.com#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix sr: <http://www.openrdf.org/config/repository/sail#> .
+@prefix afn: <http://jena.apache.org/ARQ/function#> .
+@prefix agg: <http://jena.apache.org/ARQ/function/aggregate#> .
+@prefix apf: <http://jena.apache.org/ARQ/property#> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix map: <http://www.w3.org/2005/xpath-functions/map> .
+@prefix ofn: <http://www.ontotext.com/sparql/functions/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rep: <http://www.openrdf.org/config/repository#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix data: <https://mymovies.com/data#> .
+@prefix geof: <http://www.opengis.net/def/function/geosparql/> .
+@prefix list: <http://jena.apache.org/ARQ/list#> .
+@prefix math: <http://www.w3.org/2005/xpath-functions/math> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sail: <http://www.openrdf.org/config/sail#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix array: <http://www.w3.org/2005/xpath-functions/array> .
+@prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
+@prefix geoext: <http://rdf.useekm.com/ext#> .
+@prefix schema: <http://schema.org/> .
+@prefix graphdb: <http://www.ontotext.com/config/graphdb#> .
+@prefix concepts: <https://mymovies.com/concept#> .
+@base <http://www.zupfer.com#> .
+
+<http://www.zupfer.com> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://dbpedia.org/ontology/director
+dbo:director rdf:type owl:AnnotationProperty .
+
+
+###  http://dbpedia.org/ontology/genre
+dbo:genre rdf:type owl:AnnotationProperty .
+
+
+###  http://dbpedia.org/ontology/releaseDate
+dbo:releaseDate rdf:type owl:AnnotationProperty .
+
+
+###  http://dbpedia.org/ontology/runtime
+dbo:runtime rdf:type owl:AnnotationProperty .
+
+
+###  http://dbpedia.org/ontology/starring
+dbo:starring rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://dbpedia.org/ontology/Film
+dbo:Film rdf:type owl:Class .
+
+
+###  http://dbpedia.org/ontology/Person
+dbo:Person rdf:type owl:Class .
+
+
+###  http://schema.org/Genre
+schema:Genre rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://dbpedia.org/resource/A_Beautiful_Mind
+dbr:A_Beautiful_Mind rdf:type owl:NamedIndividual ,
+                              dbo:Film ;
+                     dbo:director dbr:Ron_Howard ;
+                     dbo:genre dbr:Biography ,
+                               dbr:Drama ;
+                     dbo:releaseDate "2001-12-21"^^xsd:date ;
+                     dbo:runtime 135 ;
+                     dbo:starring dbr:Jennifer_Connelly ,
+                                  dbr:Russell_Crowe ;
+                     rdfs:label "A Beautiful Mind"@en .
+
+
+###  http://dbpedia.org/resource/Action
+dbr:Action rdf:type owl:NamedIndividual ,
+                    schema:Genre ;
+           rdfs:label "Action"@en .
+
+
+###  http://dbpedia.org/resource/Adventure
+dbr:Adventure rdf:type owl:NamedIndividual ,
+                       schema:Genre ;
+              rdfs:label "Adventure"@en .
+
+
+###  http://dbpedia.org/resource/Andrew_Garfield
+dbr:Andrew_Garfield rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Andrew Garfield"@en .
+
+
+###  http://dbpedia.org/resource/Anne_Hathaway
+dbr:Anne_Hathaway rdf:type owl:NamedIndividual ,
+                           dbo:Person ;
+                  rdfs:label "Anne Hathaway"@en .
+
+
+###  http://dbpedia.org/resource/Avatar
+dbr:Avatar rdf:type owl:NamedIndividual ,
+                    dbo:Film ;
+           dbo:director dbr:James_Cameron ;
+           dbo:genre dbr:Action ,
+                     dbr:Adventure ,
+                     dbr:Science_Fiction ;
+           dbo:releaseDate "2009-12-18"^^xsd:date ;
+           dbo:runtime 162 ;
+           dbo:starring dbr:Sam_Worthington ,
+                        dbr:Zoe_Saldana ;
+           rdfs:label "Avatar"@en .
+
+
+###  http://dbpedia.org/resource/Biography
+dbr:Biography rdf:type owl:NamedIndividual ,
+                       schema:Genre ;
+              rdfs:label "Biography"@en .
+
+
+###  http://dbpedia.org/resource/Blade_Runner_2049
+dbr:Blade_Runner_2049 rdf:type owl:NamedIndividual ,
+                               dbo:Film ;
+                      dbo:director dbr:Denis_Villeneuve ;
+                      dbo:genre dbr:Drama ,
+                                dbr:Science_Fiction ;
+                      dbo:releaseDate "2017-10-06"^^xsd:date ;
+                      dbo:runtime 164 ;
+                      dbo:starring dbr:Harrison_Ford ,
+                                   dbr:Ryan_Gosling ;
+                      rdfs:label "Blade Runner 2049"@en .
+
+
+###  http://dbpedia.org/resource/Brad_Pitt
+dbr:Brad_Pitt rdf:type owl:NamedIndividual ,
+                       dbo:Person ;
+              rdfs:label "Brad Pitt"@en .
+
+
+###  http://dbpedia.org/resource/Catch_Me_If_You_Can
+dbr:Catch_Me_If_You_Can rdf:type owl:NamedIndividual ,
+                                 dbo:Film ;
+                        dbo:director dbr:Steven_Spielberg ;
+                        dbo:genre dbr:Drama ,
+                                  dbr:Thriller ;
+                        dbo:releaseDate "2002-12-25"^^xsd:date ;
+                        dbo:runtime 141 ;
+                        dbo:starring dbr:Leonardo_DiCaprio ,
+                                     dbr:Tom_Hanks ;
+                        rdfs:label "Catch Me If You Can"@en .
+
+
+###  http://dbpedia.org/resource/Catherine_Zeta_Jones
+dbr:Catherine_Zeta_Jones rdf:type owl:NamedIndividual ,
+                                  dbo:Person ;
+                         rdfs:label "Catherine Zeta-Jones"@en .
+
+
+###  http://dbpedia.org/resource/Charlize_Theron
+dbr:Charlize_Theron rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Charlize Theron"@en .
+
+
+###  http://dbpedia.org/resource/Christian_Bale
+dbr:Christian_Bale rdf:type owl:NamedIndividual ,
+                            dbo:Person ;
+                   rdfs:label "Christian Bale"@en .
+
+
+###  http://dbpedia.org/resource/Christoph_Waltz
+dbr:Christoph_Waltz rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Christoph Waltz"@en .
+
+
+###  http://dbpedia.org/resource/Christopher_Nolan
+dbr:Christopher_Nolan rdf:type owl:NamedIndividual ,
+                               dbo:Person ;
+                      rdfs:label "Christopher Nolan"@en .
+
+
+###  http://dbpedia.org/resource/David_Fincher
+dbr:David_Fincher rdf:type owl:NamedIndividual ,
+                           dbo:Person ;
+                  rdfs:label "David Fincher"@en .
+
+
+###  http://dbpedia.org/resource/Denis_Villeneuve
+dbr:Denis_Villeneuve rdf:type owl:NamedIndividual ,
+                              dbo:Person ;
+                     rdfs:label "Denis Villeneuve"@en .
+
+
+###  http://dbpedia.org/resource/Drama
+dbr:Drama rdf:type owl:NamedIndividual ,
+                   schema:Genre ;
+          rdfs:label "Drama"@en .
+
+
+###  http://dbpedia.org/resource/Dunkirk
+dbr:Dunkirk rdf:type owl:NamedIndividual ,
+                     dbo:Film ;
+            dbo:director dbr:Christopher_Nolan ;
+            dbo:genre dbr:Action ,
+                      dbr:Drama ,
+                      dbr:War ;
+            dbo:releaseDate "2017-07-21"^^xsd:date ;
+            dbo:runtime 106 ;
+            dbo:starring dbr:Kenneth_Branagh ,
+                         dbr:Mark_Rylance ,
+                         dbr:Tom_Hardy ;
+            rdfs:label "Dunkirk"@en .
+
+
+###  http://dbpedia.org/resource/Elliot_Page
+dbr:Elliot_Page rdf:type owl:NamedIndividual ,
+                         dbo:Person ;
+                rdfs:label "Elliot Page"@en .
+
+
+###  http://dbpedia.org/resource/Forrest_Gump
+dbr:Forrest_Gump rdf:type owl:NamedIndividual ,
+                          dbo:Film ;
+                 dbo:director dbr:Robert_Zemeckis ;
+                 dbo:genre dbr:Drama ,
+                           dbr:Romance ;
+                 dbo:releaseDate "1994-07-06"^^xsd:date ;
+                 dbo:runtime 142 ;
+                 dbo:starring dbr:Gary_Sinise ,
+                              dbr:Robin_Wright ,
+                              dbr:Tom_Hanks ;
+                 rdfs:label "Forrest Gump"@en .
+
+
+###  http://dbpedia.org/resource/Gary_Sinise
+dbr:Gary_Sinise rdf:type owl:NamedIndividual ,
+                         dbo:Person ;
+                rdfs:label "Gary Sinise"@en .
+
+
+###  http://dbpedia.org/resource/George_Miller
+dbr:George_Miller rdf:type owl:NamedIndividual ,
+                           dbo:Person ;
+                  rdfs:label "George Miller"@en .
+
+
+###  http://dbpedia.org/resource/Gladiator
+dbr:Gladiator rdf:type owl:NamedIndividual ,
+                       dbo:Film ;
+              dbo:director dbr:Ridley_Scott ;
+              dbo:genre dbr:Action ,
+                        dbr:Adventure ,
+                        dbr:Drama ;
+              dbo:releaseDate "2000-05-05"^^xsd:date ;
+              dbo:runtime 155 ;
+              dbo:starring dbr:Joaquin_Phoenix ,
+                           dbr:Russell_Crowe ;
+              rdfs:label "Gladiator"@en .
+
+
+###  http://dbpedia.org/resource/Harrison_Ford
+dbr:Harrison_Ford rdf:type owl:NamedIndividual ,
+                           dbo:Person ;
+                  rdfs:label "Harrison Ford"@en .
+
+
+###  http://dbpedia.org/resource/Heath_Ledger
+dbr:Heath_Ledger rdf:type owl:NamedIndividual ,
+                          dbo:Person ;
+                 rdfs:label "Heath Ledger"@en .
+
+
+###  http://dbpedia.org/resource/Hugh_Jackman
+dbr:Hugh_Jackman rdf:type owl:NamedIndividual ,
+                          dbo:Person ;
+                 rdfs:label "Hugh Jackman"@en .
+
+
+###  http://dbpedia.org/resource/Inception
+dbr:Inception rdf:type owl:NamedIndividual ,
+                       dbo:Film ;
+              dbo:director dbr:Christopher_Nolan ;
+              dbo:genre dbr:Science_Fiction ,
+                        dbr:Thriller ;
+              dbo:releaseDate "2010-07-16"^^xsd:date ;
+              dbo:runtime 148 ;
+              dbo:starring dbr:Elliot_Page ,
+                           dbr:Leonardo_DiCaprio ;
+              rdfs:label "Inception"@en .
+
+
+###  http://dbpedia.org/resource/Inglourious_Basterds
+dbr:Inglourious_Basterds rdf:type owl:NamedIndividual ,
+                                  dbo:Film ;
+                         dbo:director dbr:Quentin_Tarantino ;
+                         dbo:genre dbr:Action ,
+                                   dbr:Drama ,
+                                   dbr:War ;
+                         dbo:releaseDate "2009-08-21"^^xsd:date ;
+                         dbo:runtime 153 ;
+                         dbo:starring dbr:Brad_Pitt ,
+                                      dbr:Christoph_Waltz ;
+                         rdfs:label "Inglourious Basterds"@en .
+
+
+###  http://dbpedia.org/resource/Interstellar
+dbr:Interstellar rdf:type owl:NamedIndividual ,
+                          dbo:Film ;
+                 dbo:director dbr:Christopher_Nolan ;
+                 dbo:genre dbr:Drama ,
+                           dbr:Science_Fiction ;
+                 dbo:releaseDate "2014-11-07"^^xsd:date ;
+                 dbo:runtime 169 ;
+                 dbo:starring dbr:Anne_Hathaway ,
+                              dbr:Matthew_McConaughey ;
+                 rdfs:label "Interstellar"@en .
+
+
+###  http://dbpedia.org/resource/James_Cameron
+dbr:James_Cameron rdf:type owl:NamedIndividual ,
+                           dbo:Person ;
+                  rdfs:label "James Cameron"@en .
+
+
+###  http://dbpedia.org/resource/Jeff_Goldblum
+dbr:Jeff_Goldblum rdf:type owl:NamedIndividual ,
+                           dbo:Person ;
+                  rdfs:label "Jeff Goldblum"@en .
+
+
+###  http://dbpedia.org/resource/Jennifer_Connelly
+dbr:Jennifer_Connelly rdf:type owl:NamedIndividual ,
+                               dbo:Person ;
+                      rdfs:label "Jennifer Connelly"@en .
+
+
+###  http://dbpedia.org/resource/Jesse_Eisenberg
+dbr:Jesse_Eisenberg rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Jesse Eisenberg"@en .
+
+
+###  http://dbpedia.org/resource/Joaquin_Phoenix
+dbr:Joaquin_Phoenix rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Joaquin Phoenix"@en .
+
+
+###  http://dbpedia.org/resource/Jonah_Hill
+dbr:Jonah_Hill rdf:type owl:NamedIndividual ,
+                        dbo:Person ;
+               rdfs:label "Jonah Hill"@en .
+
+
+###  http://dbpedia.org/resource/Jurassic_Park
+dbr:Jurassic_Park rdf:type owl:NamedIndividual ,
+                           dbo:Film ;
+                  dbo:director dbr:Steven_Spielberg ;
+                  dbo:genre dbr:Adventure ,
+                            dbr:Science_Fiction ;
+                  dbo:releaseDate "1993-06-11"^^xsd:date ;
+                  dbo:runtime 127 ;
+                  dbo:starring dbr:Jeff_Goldblum ,
+                               dbr:Laura_Dern ,
+                               dbr:Sam_Neill ;
+                  rdfs:label "Jurassic Park"@en .
+
+
+###  http://dbpedia.org/resource/Kate_Winslet
+dbr:Kate_Winslet rdf:type owl:NamedIndividual ,
+                          dbo:Person ;
+                 rdfs:label "Kate Winslet"@en .
+
+
+###  http://dbpedia.org/resource/Kenneth_Branagh
+dbr:Kenneth_Branagh rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Kenneth Branagh"@en .
+
+
+###  http://dbpedia.org/resource/Laura_Dern
+dbr:Laura_Dern rdf:type owl:NamedIndividual ,
+                        dbo:Person ;
+               rdfs:label "Laura Dern"@en .
+
+
+###  http://dbpedia.org/resource/Leonardo_DiCaprio
+dbr:Leonardo_DiCaprio rdf:type owl:NamedIndividual ,
+                               dbo:Person ;
+                      rdfs:label "Leonardo DiCaprio"@en .
+
+
+###  http://dbpedia.org/resource/Mad_Max_Fury_Road
+dbr:Mad_Max_Fury_Road rdf:type owl:NamedIndividual ,
+                               dbo:Film ;
+                      dbo:director dbr:George_Miller ;
+                      dbo:genre dbr:Action ,
+                                dbr:Adventure ,
+                                dbr:Science_Fiction ;
+                      dbo:releaseDate "2015-05-15"^^xsd:date ;
+                      dbo:runtime 120 ;
+                      dbo:starring dbr:Charlize_Theron ,
+                                   dbr:Tom_Hardy ;
+                      rdfs:label "Mad Max: Fury Road"@en .
+
+
+###  http://dbpedia.org/resource/Mark_Rylance
+dbr:Mark_Rylance rdf:type owl:NamedIndividual ,
+                          dbo:Person ;
+                 rdfs:label "Mark Rylance"@en .
+
+
+###  http://dbpedia.org/resource/Martin_Scorsese
+dbr:Martin_Scorsese rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Martin Scorsese"@en .
+
+
+###  http://dbpedia.org/resource/Matt_Damon
+dbr:Matt_Damon rdf:type owl:NamedIndividual ,
+                        dbo:Person ;
+               rdfs:label "Matt Damon"@en .
+
+
+###  http://dbpedia.org/resource/Matthew_McConaughey
+dbr:Matthew_McConaughey rdf:type owl:NamedIndividual ,
+                                 dbo:Person ;
+                        rdfs:label "Matthew McConaughey"@en .
+
+
+###  http://dbpedia.org/resource/Quentin_Tarantino
+dbr:Quentin_Tarantino rdf:type owl:NamedIndividual ,
+                               dbo:Person ;
+                      rdfs:label "Quentin Tarantino"@en .
+
+
+###  http://dbpedia.org/resource/Ridley_Scott
+dbr:Ridley_Scott rdf:type owl:NamedIndividual ,
+                          dbo:Person ;
+                 rdfs:label "Ridley Scott"@en .
+
+
+###  http://dbpedia.org/resource/Robert_Zemeckis
+dbr:Robert_Zemeckis rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Robert Zemeckis"@en .
+
+
+###  http://dbpedia.org/resource/Robin_Wright
+dbr:Robin_Wright rdf:type owl:NamedIndividual ,
+                          dbo:Person ;
+                 rdfs:label "Robin Wright"@en .
+
+
+###  http://dbpedia.org/resource/Romance
+dbr:Romance rdf:type owl:NamedIndividual ,
+                     schema:Genre ;
+            rdfs:label "Romance"@en .
+
+
+###  http://dbpedia.org/resource/Ron_Howard
+dbr:Ron_Howard rdf:type owl:NamedIndividual ,
+                        dbo:Person ;
+               rdfs:label "Ron Howard"@en .
+
+
+###  http://dbpedia.org/resource/Russell_Crowe
+dbr:Russell_Crowe rdf:type owl:NamedIndividual ,
+                           dbo:Person ;
+                  rdfs:label "Russell Crowe"@en .
+
+
+###  http://dbpedia.org/resource/Ryan_Gosling
+dbr:Ryan_Gosling rdf:type owl:NamedIndividual ,
+                          dbo:Person ;
+                 rdfs:label "Ryan Gosling"@en .
+
+
+###  http://dbpedia.org/resource/Sam_Neill
+dbr:Sam_Neill rdf:type owl:NamedIndividual ,
+                       dbo:Person ;
+              rdfs:label "Sam Neill"@en .
+
+
+###  http://dbpedia.org/resource/Sam_Worthington
+dbr:Sam_Worthington rdf:type owl:NamedIndividual ,
+                             dbo:Person ;
+                    rdfs:label "Sam Worthington"@en .
+
+
+###  http://dbpedia.org/resource/Saving_Private_Ryan
+dbr:Saving_Private_Ryan rdf:type owl:NamedIndividual ,
+                                 dbo:Film ;
+                        dbo:director dbr:Steven_Spielberg ;
+                        dbo:genre dbr:Drama ,
+                                  dbr:War ;
+                        dbo:releaseDate "1998-07-24"^^xsd:date ;
+                        dbo:runtime 169 ;
+                        dbo:starring dbr:Matt_Damon ,
+                                     dbr:Tom_Hanks ;
+                        rdfs:label "Saving Private Ryan"@en .
+
+
+###  http://dbpedia.org/resource/Scarlett_Johansson
+dbr:Scarlett_Johansson rdf:type owl:NamedIndividual ,
+                                dbo:Person ;
+                       rdfs:label "Scarlett Johansson"@en .
+
+
+###  http://dbpedia.org/resource/Steven_Spielberg
+dbr:Steven_Spielberg rdf:type owl:NamedIndividual ,
+                              dbo:Person ;
+                     rdfs:label "Steven Spielberg"@en .
+
+
+###  http://dbpedia.org/resource/The_Dark_Knight
+dbr:The_Dark_Knight rdf:type owl:NamedIndividual ,
+                             dbo:Film ;
+                    dbo:director dbr:Christopher_Nolan ;
+                    dbo:genre dbr:Action ,
+                              dbr:Thriller ;
+                    dbo:releaseDate "2008-07-18"^^xsd:date ;
+                    dbo:runtime 152 ;
+                    dbo:starring dbr:Christian_Bale ,
+                                 dbr:Heath_Ledger ;
+                    rdfs:label "The Dark Knight"@en .
+
+
+###  http://dbpedia.org/resource/The_Matrix_Reloaded
+dbr:The_Matrix_Reloaded rdf:type owl:NamedIndividual ,
+                                 dbo:Film ;
+                        dbo:director dbr:Lana_Wachowski ,
+                                     dbr:Lilly_Wachowski ;
+                        dbo:genre dbr:Action ,
+                                  dbr:Science_Fiction ;
+                        dbo:releaseDate "2003-05-15"^^xsd:date ;
+                        dbo:runtime 138 ;
+                        dbo:starring dbr:Carrie-Anne_Moss ,
+                                     dbr:Keanu_Reeves ,
+                                     dbr:Laurence_Fishburne ;
+                        rdfs:label "The Matrix Reloaded"@en .
+
+
+###  http://dbpedia.org/resource/The_Prestige
+dbr:The_Prestige rdf:type owl:NamedIndividual ,
+                          dbo:Film ;
+                 dbo:director dbr:Christopher_Nolan ;
+                 dbo:genre dbr:Drama ,
+                           dbr:Thriller ;
+                 dbo:releaseDate "2006-10-20"^^xsd:date ;
+                 dbo:runtime 130 ;
+                 dbo:starring dbr:Christian_Bale ,
+                              dbr:Hugh_Jackman ,
+                              dbr:Scarlett_Johansson ;
+                 rdfs:label "The Prestige"@en .
+
+
+###  http://dbpedia.org/resource/The_Social_Network
+dbr:The_Social_Network rdf:type owl:NamedIndividual ,
+                                dbo:Film ;
+                       dbo:director dbr:David_Fincher ;
+                       dbo:genre dbr:Biography ,
+                                 dbr:Drama ;
+                       dbo:releaseDate "2010-10-01"^^xsd:date ;
+                       dbo:runtime 120 ;
+                       dbo:starring dbr:Andrew_Garfield ,
+                                    dbr:Jesse_Eisenberg ;
+                       rdfs:label "The Social Network"@en .
+
+
+###  http://dbpedia.org/resource/The_Terminal
+dbr:The_Terminal rdf:type owl:NamedIndividual ,
+                          dbo:Film ;
+                 dbo:director dbr:Steven_Spielberg ;
+                 dbo:genre dbr:Comedy ,
+                           dbr:Drama ;
+                 dbo:releaseDate "2004-06-18"^^xsd:date ;
+                 dbo:runtime 128 ;
+                 dbo:starring dbr:Catherine_Zeta_Jones ,
+                              dbr:Tom_Hanks ;
+                 rdfs:label "The Terminal"@en .
+
+
+###  http://dbpedia.org/resource/The_Wolf_of_Wall_Street
+dbr:The_Wolf_of_Wall_Street rdf:type owl:NamedIndividual ,
+                                     dbo:Film ;
+                            dbo:director dbr:Martin_Scorsese ;
+                            dbo:genre dbr:Biography ,
+                                      dbr:Comedy ,
+                                      dbr:Drama ;
+                            dbo:releaseDate "2013-12-25"^^xsd:date ;
+                            dbo:runtime 180 ;
+                            dbo:starring dbr:Jonah_Hill ,
+                                         dbr:Leonardo_DiCaprio ;
+                            rdfs:label "The Wolf of Wall Street"@en .
+
+
+###  http://dbpedia.org/resource/Thriller
+dbr:Thriller rdf:type owl:NamedIndividual ,
+                      schema:Genre ;
+             rdfs:label "Thriller"@en .
+
+
+###  http://dbpedia.org/resource/Titanic
+dbr:Titanic rdf:type owl:NamedIndividual ,
+                     dbo:Film ;
+            dbo:director dbr:James_Cameron ;
+            dbo:genre dbr:Drama ,
+                      dbr:Romance ;
+            dbo:releaseDate "1997-12-19"^^xsd:date ;
+            dbo:runtime 195 ;
+            dbo:starring dbr:Kate_Winslet ,
+                         dbr:Leonardo_DiCaprio ;
+            rdfs:label "Titanic"@en .
+
+
+###  http://dbpedia.org/resource/Tom_Hanks
+dbr:Tom_Hanks rdf:type owl:NamedIndividual ,
+                       dbo:Person ;
+              rdfs:label "Tom Hanks"@en .
+
+
+###  http://dbpedia.org/resource/Tom_Hardy
+dbr:Tom_Hardy rdf:type owl:NamedIndividual ,
+                       dbo:Person ;
+              rdfs:label "Tom Hardy"@en .
+
+
+###  http://dbpedia.org/resource/War
+dbr:War rdf:type owl:NamedIndividual ,
+                 schema:Genre ;
+        rdfs:label "War"@en .
+
+
+###  http://dbpedia.org/resource/Zoe_Saldana
+dbr:Zoe_Saldana rdf:type owl:NamedIndividual ,
+                         dbo:Person ;
+                rdfs:label "Zoe Saldana"@en .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

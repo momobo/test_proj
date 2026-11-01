@@ -1,0 +1,13 @@
+ SELECT DISTINCT ?title  ?runtime ?directorLabel ?countryLabel 
+ WHERE {
+         ?film a dbo:Film .
+         ?film rdfs:label ?title .
+         ?film dbo:runtime ?runtime .
+         ?film dbo:director ?director .
+         ?director rdfs:label ?directorLabel .
+         ?film dbo:country ?country .
+         ?country rdfs:label ?countryLabel .
+         FILTER (regex( str(?title), "{sparql_param}", "i")) 
+         FILTER (lang(?title) = "en") 
+     }
+ LIMIT 10
